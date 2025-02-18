@@ -1,6 +1,6 @@
-const Tag = require("../models/tags");
+const Category = require("../models/Category");
 
-exports.createTag = async (req, res) => {
+exports.createCategory = async (req, res) => {
   try {
     const { name, description } = req.body;
 
@@ -12,15 +12,15 @@ exports.createTag = async (req, res) => {
     }
 
     // crate enter in db
-    const tagDetails = await Tag.create({
+    const changepasswordategoryDetails = await Category.create({
       name,
       description,
     });
-    console.log(tagDetails);
+    console.log(categoryDetails);
 
     return res.status(200).json({
         success:false,
-        message:"Tag is created successfully"
+        message:"Category is created successfully"
     })
   } catch (error) {
     return res.status(500).json({
@@ -33,22 +33,22 @@ exports.createTag = async (req, res) => {
 
 //get all tags
 
-exports.showAlltags = async (req, res) => {
+exports.showAllcategory = async (req, res) => {
     try{
-        const allTags = await Tag.find({}, {name:true, description:true});
-        if(!allTags ){
+        const allTags = await Category.find({}, {name:true, description:true});
+        if(!allCategory ){
             return res.status(400).json({
-                message:"There is no tags."
+                message:"There is no category."
             })
         }
         return res.status(200).json({
-            message:"All Tags.",
+            message:"All category.",
             success:true,
             data:allTags
         })
     }catch(error){
         return res.status(500).json({
-            message:"Error while fetching all tags",
+            message:"Error while fetching all category",
             error:error.message
         })
     }

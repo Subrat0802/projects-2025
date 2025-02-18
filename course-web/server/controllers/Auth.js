@@ -22,7 +22,7 @@ exports.sendOTP = async (req, res) => {
     const checkUserPresent = await User.findOne({ email });
 
     if (checkUserPresent) {
-      return es.status(409).json({
+      return res.status(409).json({
         success: false,
         message: "user is already registered",
       });
